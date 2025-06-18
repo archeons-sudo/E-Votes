@@ -35,7 +35,7 @@ class CreateVotesTable extends Migration
             ],
             'voted_at' => [
                 'type'    => 'TIMESTAMP',
-                'default' => 'CURRENT_TIMESTAMP',
+                'null'    => true,
             ],
             'proof_pdf' => [
                 'type'       => 'VARCHAR',

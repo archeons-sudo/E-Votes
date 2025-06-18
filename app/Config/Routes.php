@@ -19,13 +19,13 @@ $routes->get('register', 'Auth::register');
 $routes->post('register', 'Auth::register');
 $routes->get('logout', 'Auth::studentLogout');
 
+// Admin auth routes (using main Auth controller for better logging)
+$routes->get('admin-system/login', 'Auth::adminLogin');
+$routes->post('admin-system/login', 'Auth::adminLogin');
+$routes->get('admin-system/logout', 'Auth::adminLogout');
+
 // Admin System Routes
 $routes->group('admin-system', function($routes) {
-    // Auth routes
-    $routes->get('login', 'Admin\AuthController::login');
-    $routes->post('login', 'Admin\AuthController::login');
-    $routes->get('logout', 'Admin\AuthController::logout');
-    
     // Admin routes (no auth filter)
     $routes->get('dashboard', 'Admin\Dashboard::index');
     $routes->get('dashboard/export', 'Admin\Dashboard::exportVoteResults');

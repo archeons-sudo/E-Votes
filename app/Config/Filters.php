@@ -113,5 +113,14 @@ class Filters extends BaseFilters
      */
     public array $filters = [
         'studentAuth' => ['before' => ['vote/*', 'vote']],
+        'adminAuth' => [
+            'before' => [
+                'admin-system/dashboard*',
+                'admin-system/candidates*',
+                'admin-system/students*',
+                'admin-system/classes*',
+                'admin-system/periods*'
+            ]
+        ],
     ];
 }

@@ -50,23 +50,19 @@ class CreateStudentsTable extends Migration
             ],
             'created_at' => [
                 'type'    => 'TIMESTAMP',
-                'default' => 'CURRENT_TIMESTAMP',
+                'null'    => true,
             ],
             'updated_at' => [
                 'type'    => 'TIMESTAMP',
-                'default' => 'CURRENT_TIMESTAMP',
-                'on_update' => 'CURRENT_TIMESTAMP',
+                'null'    => true,
             ],
         ]);
         
         $this->forge->addPrimaryKey('id');
-        $this->forge->addUniqueKey('nis');
-        $this->forge->addUniqueKey('email');
-        $this->forge->addUniqueKey('google_id');
-        $this->forge->addKey('nis', false, false, 'idx_student_nis');
-        $this->forge->addKey('email', false, false, 'idx_student_email');
-        $this->forge->addForeignKey('class_id', 'classes', 'id', 'CASCADE', 'CASCADE');
         $this->forge->createTable('students');
+        
+        // Foreign key constraints
+        $this->forge->addForeignKey('class_id', 'classes', 'id', 'CASCADE', 'CASCADE');
     }
 
     public function down()
