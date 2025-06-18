@@ -11,9 +11,11 @@ class VoteModel extends Model
     protected $useAutoIncrement = true;
     protected $returnType = 'array';
     protected $useSoftDeletes = false;
-    protected $allowedFields = ['student_id', 'candidate_id', 'period_id', 'proof_pdf'];
+    protected $allowedFields = ['student_id', 'candidate_id', 'period_id', 'proof_pdf', 'voted_at'];
     protected $useTimestamps = false;
-    protected $createdField  = 'voted_at';
+    
+    // Add voted_at to allowed fields since we're not using automatic timestamps
+    protected $dateFormat = 'datetime';
 
     // Record a new vote
     public function recordVote($studentId, $candidateId, $periodId, $proofPdf = null)
@@ -22,7 +24,8 @@ class VoteModel extends Model
             'student_id' => $studentId,
             'candidate_id' => $candidateId,
             'period_id' => $periodId,
-            'proof_pdf' => $proofPdf
+            'proof_pdf' => $proofPdf,
+            'voted_at' => date('Y-m-d H:i:s')
         ]);
     }
 
